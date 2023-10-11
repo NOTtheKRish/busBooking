@@ -1,0 +1,40 @@
+.payment-div{
+    height: 600px !important;
+    width: 1000px !important;
+    background-color: azure;
+    border-radius: 10px !important;
+    box-shadow: 10px 10px 10px 10px #808080;
+}
+.fa-x{
+    font-size: 15px;
+}
+#remove{
+    text-decoration: none;
+}
+.pagecenter{
+    min-height: 700px !important;
+    min-width: 100vh !important;    
+}
+body{
+    background: linear-gradient(
+        #dd5e89,#F7BB97
+        );
+}
+#datefunc{
+    width: 50%;
+}
+#payment-groups{
+    width: 75%;
+}
+.details-enter{
+    background-color: aqua;
+}
+.payment-details{
+    border-right: 1px solid grey;
+}
+#input-fields-payment{
+    width: 75%;
+}
+#input-fields-payment-cvv{
+    width: 25%;
+}

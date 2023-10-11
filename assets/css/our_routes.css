@@ -1,0 +1,23 @@
+.routes-div{
+    height: 600px !important;
+    width: 70%;
+    border-radius: 10px;
+    background-image: url('../images/routes-back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.outer-div{
+    min-width: 100%;
+    min-height: 100vh;
+}
+.tamilnadu-div{
+    height: 500px;
+    width: 300px;
+}
+.karnataka-div{
+    height: 500px;
+    width: 300px;
+}
+.ul-div{
+    width: 70%;
+}

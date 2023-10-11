@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#background{
+    background-image: url('../images/bus-background.webp');
+    background-size: cover;
+    width: 100% !important;
+}
+.down-back{
+    background-image: url('../images/bus-background.webp');
+    background-size: cover;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    min-height: 500px !important;
+    width: 70% !important;
+}
+@media(max-width:768px) {
+    #background{
+        background-image: url('../images/bus-background.webp');
+        background-size: cover;
+        height: 470px !important;
+        width: 300% !important;
+    }    
+}
+@media(min-width:1500px){
+    #background{
+        background-image: url('../images/bus-background.webp');
+        background-size: cover;
+        height: 630px !important;
+        width: 100% !important;
+    } 
+}

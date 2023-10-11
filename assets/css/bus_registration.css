@@ -1,0 +1,21 @@
+body{
+    background: linear-gradient(#DFCCFB,#FFF3DA);
+}
+.registration-div{
+    height: 500px;
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+}
+.main-div{
+    min-height: 100vh;
+    min-height: 100%;
+}
+#formboxdes{
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    border-radius: 0px;
+    width: 50%;
+    background-color: white;
+}

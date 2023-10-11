@@ -1,0 +1,49 @@
+body,html,.container-fluid{
+    height: 100%;
+}
+.leftdash{
+    min-height: 717px;
+    background-color: #36454F;
+}
+#selectseatheading{
+    border-bottom: 1px solid white;
+}
+.fa-magnifying-glass{
+    position: absolute;
+    left: 20px;
+    color: #36454F;
+    font-size: 35px;    
+}
+.fa-location-dot{
+    position: absolute;
+    left: 20px;
+    top: 195px;
+    color: #36454F;
+    font-size: 30px; 
+}
+::placeholder{
+    position: relative;
+    left: 35px;
+    
+}
+.maindash{
+    min-height: 717px;
+    width: 100%;
+}
+.bookingbus{
+    margin-top: 100px !important;
+    margin-left: 60px !important;
+    min-height: 520px !important;
+    width: 300px !important;
+    background-color: grey;
+    border-radius: 10px;
+}
+#steering{
+    height: 50px !important;
+    width: 50px !important;
+}
+.filtersoption{
+    min-height: 300px !important;
+    width: 300px !important;
+    background-color: aliceblue;
+}
