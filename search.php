@@ -97,7 +97,18 @@
                   <div class="col-sm-2">
                     <h5 class="card-title">Seats Available</h5>
                     <p class="card-text"><strong>18</strong> Seats Available</p>
-                    <a href="select-seat.php" class="btn btn-primary">View Seats</a>
+                    <a href="select-seat.php?journey_date=<?php echo $_GET['journey_date']; ?>" class="btn btn-primary">View Seats</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="row d-flex justify-content-center p-3">
+                  <div class="col-sm-2 mb-3 mb-lg-0">
+                    <h5 class="card-title">No Buses Available!</h5>
                   </div>
                 </div>
               </div>

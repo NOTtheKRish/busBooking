@@ -15,16 +15,16 @@
                         Bus Company Registration
                     </div>
                     <div class="col-lg-12 mt-5">
-                        <input class="form-control mx-auto" type="text" placeholder="Company Name" aria-label="default input example" id="formboxdes">
+                        <input class="form-control mx-auto formboxdes" type="text" placeholder="Company Name" aria-label="default input example" id="formboxdes">
                     </div>
                     <div class="col-lg-12 mt-5">
-                        <input class="form-control mx-auto" type="time" aria-label="default input example" id="formboxdes">
+                        <input class="form-control mx-auto formboxdes" type="time" aria-label="default input example" id="formboxdes">
                     </div>
                     <div class="col-lg-12 mt-5">
-                        <input class="form-control mx-auto" type="text" placeholder="From" aria-label="default input example" id="formboxdes">
+                        <input class="form-control mx-auto formboxdes" type="text" placeholder="From" aria-label="default input example" id="formboxdes">
                     </div>
                     <div class="col-lg-12 mt-5">
-                        <input class="form-control mx-auto" type="text" placeholder="To" aria-label="default input example" id="formboxdes">
+                        <input class="form-control mx-auto formboxdes" type="text" placeholder="To" aria-label="default input example" id="formboxdes">
                     </div>
                     <div class="col-lg-12 mt-5">
                         <button class="btn btn-success d-flex mx-auto">Register</button>

@@ -11,11 +11,11 @@ body{
     min-height: 100vh;
     min-height: 100%;
 }
-#formboxdes{
-    border-right: none;
-    border-top: none;
-    border-left: none;
-    border-radius: 0px;
-    width: 50%;
-    background-color: white;
+.formboxdes{
+    border-right: none!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-radius: 0px!important;
+    width: 50%!important;
+    background-color: white!important;
 }

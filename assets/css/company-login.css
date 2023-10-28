@@ -14,11 +14,11 @@ body{
     box-shadow: 20px 20px 20px 20px gray;
     border-radius: 10px;
 }
-#formindes{
-    width:70%;
-    border-right: none;
-    border-top: none;
-    border-left: none;
-    border-radius: 0px;
-    box-shadow: 3px 3px 3px 3px gray;
+.formindes{
+    width:70%!important;
+    border-right: none!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-radius: 0px!important;
+    box-shadow: 3px 3px 3px 3px gray!important;
 }
