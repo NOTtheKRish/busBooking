@@ -1,33 +1,3 @@
-<?php
-    // Check if $_SESSION or $_COOKIE already set
-    if(isset($_SESSION['userid'])){
-        // header("index.php");
-        echo'<script type="text/javascript">
-            window.location.href="index.php";
-        </script>';
-    }else if(isset($_COOKIE['rememberme'])){
-        // Fetch rememberme cookie value
-        $userid = $_COOKIE['rememberme'];
-        $sql_query = "SELECT username,id,role,userRelation,password FROM accounts WHERE id='".$userid."'";
-        $result = mysqli_query($conn,$sql_query);
-        while($row = mysqli_fetch_array($result)){
-            session_name('RishHRM');
-            session_start();
-            $_SESSION['userid'] = $userid;
-            $_SESSION['loggedin'] = TRUE;
-            $_SESSION['name'] = $row['username'];
-            $_SESSION['id'] = $row['role']; //User's Role
-            $_SESSION['userId'] = $row['id']; //User's ID
-            $_SESSION['userRel'] = $row['userRelation']; //Logged In User's Relation ID
-            $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start']+(10*60);
-            // header("index.php");
-            echo'<script type="text/javascript">
-                window.location.href="index.php";
-            </script>';
-        }
-    }
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -1,5 +1,10 @@
 <?php
-    require('helpers/DatabaseConnect.php');
+    $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+    if(in_array($fileName,['profile'])){
+        require_once('./helpers/DatabaseConnect.php');
+    }else{
+        require_once('../../helpers/DatabaseConnect.php');
+    }
     
     class TicketBooking{
         public function fetchAll(){
@@ -8,10 +13,31 @@
             $sql = "SELECT * FROM ticket_bookings ORDER BY id DESC";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $result = $stmt->get_result(); // get the mysqli result
-            $bus = $result->fetch_assoc(); // fetch data
+            $result = $stmt->get_result(); // get the sqlsrv result
             
-            return $bus;
+            return $result;
+        }
+        
+        public function fetchForUser($userId){
+            $databaseConnect = new DatabaseConnect();
+            $conn = $databaseConnect->getInstance();
+            $sql = "SELECT * FROM ticket_bookings WHERE user_id = ? ORDER BY id DESC";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('i',$userId);
+            $stmt->execute();
+            $result = $stmt->get_result(); // get the sqlsrv result
+            
+            return $result;
+        }
+
+        public function generateRandomString($length = 10) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[random_int(0, $charactersLength - 1)];
+            }
+            return $randomString;
         }
 
         public function createBooking($userId,$bookingDate,$busRouteId,$selectedSeats,$passengerNames,
@@ -20,6 +46,7 @@
             $totalTickets = 0;
             $databaseConnect = new DatabaseConnect();
             $conn = $databaseConnect->getInstance();
+            $ticketId = self::generateRandomString(12);
             $sql = "INSERT INTO ticket_bookings (user_id,ticket_id,booking_date,bus_route_id,seat_no,passenger_name,passenger_age,passenger_email,passenger_phone) VALUES(?,?,?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ississsss", $userId,$ticketId,$bookingDate,$busRouteId,$selectedSeats,$passengerNames,

@@ -1,5 +1,5 @@
 <?php
-    include('DatabaseConnect.php');
+    require_once('./helpers/DatabaseConnect.php');
     class SearchHelper{
         public $fromLocation;
         public $toLocation;
@@ -16,14 +16,20 @@
             // PHP prepared statement
             $databaseConnect = new DatabaseConnect();
             $conn = $databaseConnect->getInstance();
-            $sql = "SELECT * FROM bus_routes WHERE 'from_location' = ? AND 'to_location' = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sss", $this->fromLocation,$this->toLocation);
-            $stmt->execute();
-            $result = $stmt->get_result(); // get the mysqli result
-            $bus = $result->fetch_assoc(); // fetch data
+            $sql = "SELECT * FROM bus_routes WHERE from_location = ".$this->from_location." AND to_location = ".$this->to_location." ORDER BY duration ASC";
             
-            return $bus;
+            $result = sqlsrv_query($conn, $insertQuery);
+    
+            if ($stmt === false) {
+                die(print_r(sqlsrv_errors(), true));
+            } else {
+                $response = [
+                    'status' => "success",
+                    'message' => "Company Registration Success!",
+                ];
+            }
+            
+            return $result;
         }
         function fetchFromLocation() {
             return $this->fromLocation;

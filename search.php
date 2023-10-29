@@ -1,14 +1,5 @@
 <?php
-    $serverName = "localhost";
-    $username = "root";
-    $password = "";
-    $databaseName = "bus_booking";
-    $conn = new mysqli($serverName, $username, $password, $databaseName);
-
-    if(!$conn){
-        die("Unable to connect to Database!");
-    }
-    require('helpers/SearchHelper.php');
+  require_once('./helpers/SearchHelper.php');
 ?>
 <html lang="en">
 <head>
@@ -25,7 +16,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary d-none d-md-block">
           <div class="container-fluid d-flex justify-content-evenly">
-            <a class="nav-link" aria-current="page" href="/busBooking">Home</a>
+            <a class="nav-link" aria-current="page" href="/">Home</a>
             <a class="nav-link" href="our-routes.php">Our Routes</a>
             <a class="navbar-brand" href="#">
               <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
@@ -41,7 +32,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo01">
-                <a class="nav-link mb-3" aria-current="page" href="/busBooking">Home</a>
+                <a class="nav-link mb-3" aria-current="page" href="/">Home</a>
                 <a class="nav-link mb-3" href="our-routes.php">Our Routes</a>
                 <a href="javascript:void(0)">
                   <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
@@ -67,42 +58,51 @@
       </div>
       <div class="container my-5">
         <div class="row">
+          <?php
+            $availableBuses = $searchHelper->fetchBuses();
+            if (sqlsrv_num_rows($availableBuses) > 0) {
+                while($row = sqlsrv_fetch_array($availableBuses, SQLSRV_FETCH_ASSOC)){
+          ?>
           <div class="col-sm-12 mb-3">
             <div class="card">
               <div class="card-body">
                 <div class="row d-flex">
                   <div class="col-sm-2 mb-3 mb-lg-0">
-                    <h5 class="card-title">Bus Name</h5>
-                    <p class="card-text">A/C Sleeper (2+1)</p>
+                    <h5 class="card-title"><?php echo $row['bus_name']; ?></h5>
+                    <p class="card-text"><?php echo $row['bus_type']; ?></p>
                   </div>
                   <div class="col-sm-2 mb-3 mb-lg-0">
                     <h5 class="card-title">Departure</h5>
-                    <p class="card-text"><strong>21:00</strong></p>
-                    <p class="card-text">Koyambedu</p>
+                    <p class="card-text"><strong><?php echo $row['boarding_time']; ?></strong></p>
+                    <p class="card-text"><?php echo $row['boarding_point']; ?></p>
                   </div>
                   <div class="col-sm-2 mb-3 mb-lg-0">
                     <h5 class="card-title">Duration</h5>
-                    <p class="card-text">9h 55m</p>
+                    <p class="card-text"><?php echo $row['duration']; ?></p>
                   </div>
                   <div class="col-sm-2 mb-3 mb-lg-0">
                     <h5 class="card-title">Arrival</h5>
-                    <p class="card-text"><strong>06:55</strong></p>
-                    <p class="card-text">Gandhipuram</p>
+                    <p class="card-text"><strong><?php echo $row['dropping_time']; ?></strong></p>
+                    <p class="card-text"><?php echo $row['dropping_point']; ?></p>
                   </div>
                   <div class="col-sm-2 mb-3 mb-lg-0">
                     <h5 class="card-title">Fare</h5>
-                    <p class="card-text"><strong>INR 945</strong></p>
+                    <p class="card-text"><strong>INR <?php echo $row['fare']; ?></strong></p>
                   </div>
                   <hr class="d-block d-lg-none">
                   <div class="col-sm-2">
                     <h5 class="card-title">Seats Available</h5>
-                    <p class="card-text"><strong>18</strong> Seats Available</p>
-                    <a href="select-seat.php?journey_date=<?php echo $_GET['journey_date']; ?>" class="btn btn-primary">View Seats</a>
+                    <p class="card-text"><strong><?php echo $row['available_seats'] ?></strong> Seats Available</p>
+                    <a href="select-seat.php?bus_route_id=<?php echo $row['id']; ?>&?from_location=<?php echo $searchHelper->fetchFromLocation(); ?>&to_location=<?php echo $searchHelper->fetchToLocation(); ?>?journey_date=<?php echo $_GET['journey_date']; ?>" class="btn btn-primary">View Seats</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <?php
+                }
+              }else{
+          ?>
           <div class="col-sm-12 mb-3">
             <div class="card">
               <div class="card-body">
@@ -114,6 +114,9 @@
               </div>
             </div>
           </div>
+          <?php
+              }
+          ?>
         </div>
       </div>
       <?php include_once('scripts.php'); ?>
