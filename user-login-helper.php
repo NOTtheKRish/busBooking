@@ -9,11 +9,11 @@
         if ($uname != "" && $password != ""){
            $sql_query = "SELECT id,user_type,name,email,phone,password FROM users WHERE email='".$uname."'";
            $result = $conn->query($sql_query);
-        //    $result = sqlsrv_query($conn,$sql_query);
-           $result_num = sqlsrv_num_rows($result);
+        //    $result = mysqli_query($conn,$sql_query);
+           $result_num = mysqli_num_rows($result);
            if($result_num != 0){
                 // account exists
-                while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
+                while($row = mysqli_fetch_array($result)){
                    $pw = $row['password'];
                    if($row['user_type'] == '1'){
                        // company logged in

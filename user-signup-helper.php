@@ -13,16 +13,16 @@
     
         $sql = "INSERT INTO users (name,email,phone,password) VALUES (:value1, :value2, :value3, :value4)";
         $params = array(
-            array($name, SQLSRV_PARAM_IN),
-            array($email, SQLSRV_PARAM_IN),
-            array($phone, SQLSRV_PARAM_IN),
-            array($hashPass, SQLSRV_PARAM_IN),
+            array($name, mysqli_PARAM_IN),
+            array($email, mysqli_PARAM_IN),
+            array($phone, mysqli_PARAM_IN),
+            array($hashPass, mysqli_PARAM_IN),
         );
         
-        $stmt = sqlsrv_query($conn, $insertQuery, $params);
+        $stmt = mysqli_query($conn, $insertQuery, $params);
 
         if ($stmt === false) {
-            die(print_r(sqlsrv_errors(), true));
+            die(print_r(mysqli_errors(), true));
         } else {
             $response = [
                 'status' => "success",
