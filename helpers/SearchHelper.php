@@ -16,11 +16,27 @@
             // PHP prepared statement
             $databaseConnect = new DatabaseConnect();
             $conn = $databaseConnect->getInstance();
+<<<<<<< HEAD
             $sql = "SELECT * FROM bus_routes WHERE from_location = ? AND to_location = ? ORDER BY duration ASC";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ss", $this->fromLocation,$this->toLocation);
             $stmt->execute();
             $result = $stmt->get_result(); // get the mysqli result
+=======
+            $sql = "SELECT * FROM bus_routes WHERE from_location = ".$this->from_location." AND to_location = ".$this->to_location." ORDER BY duration ASC";
+            
+            $result = sqlsrv_query($conn, $insertQuery);
+    
+            if ($stmt === false) {
+                die(print_r(sqlsrv_errors(), true));
+            } else {
+                $response = [
+                    'status' => "success",
+                    'message' => "Company Registration Success!",
+                ];
+            }
+            
+>>>>>>> d5d5f13cddf41dfe615be77690302b9aaf2de5f7
             return $result;
         }
         function fetchFromLocation() {

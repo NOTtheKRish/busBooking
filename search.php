@@ -60,8 +60,13 @@
         <div class="row">
           <?php
             $availableBuses = $searchHelper->fetchBuses();
+<<<<<<< HEAD
             if (mysqli_num_rows($availableBuses) > 0) {
                 while($row = mysqli_fetch_array($availableBuses)){
+=======
+            if (sqlsrv_num_rows($availableBuses) > 0) {
+                while($row = sqlsrv_fetch_array($availableBuses, SQLSRV_FETCH_ASSOC)){
+>>>>>>> d5d5f13cddf41dfe615be77690302b9aaf2de5f7
           ?>
           <div class="col-sm-12 mb-3">
             <div class="card">

@@ -136,8 +136,8 @@
                 <?php
                     $busRoute = new BusRoute();
                     $fetchAll = $busRoute->fetchAll();
-                    if (mysqli_num_rows($fetchAll) > 0) {
-                        while($row = mysqli_fetch_array($fetchAll)){
+                    if (sqlsrv_num_rows($fetchAll) > 0) {
+                        while($row = sqlsrv_fetch_array($fetchAll,SQLSRV_FETCH_ASSOC)){
                 ?>
                 <tr class="align-items-end">
                     <td><?php echo $row['id']; ?></td>
