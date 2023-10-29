@@ -1,5 +1,5 @@
 <?php
-    require('helpers/DatabaseConnect.php');
+    require_once('./helpers/DatabaseConnect.php');
 
     $databaseConnect = new DatabaseConnect();
     $conn = $databaseConnect->getInstance();
@@ -9,7 +9,7 @@
   
         if ($uname != "" && $password != ""){
            $sql_query = "SELECT id,user_type,name,email,phone,password FROM users WHERE email='".$uname."'";
-           $result = mysqli_query($conn,$sql_query);
+           $result = $conn->query($sql_query);
            $result_num = mysqli_num_rows($result);
            if($result_num != 0){
                 // account exists

@@ -32,6 +32,10 @@
                             </button>
                             <button class="btn btn-success d-flex mx-auto" name="signIn" id="signIn">Sign In</button>
                         </div>
+                        <div class="col-lg-12 d-flex align-items-end mt-5">
+                            <h5>New User?</h5>
+                            <a class="btn btn-primary text-decoration-none text-dark ms-3" href="company-signup.php">Register</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <?php
-    require('helpers/DatabaseConnect.php');
+    require_once('./helpers/DatabaseConnect.php');
     $databaseConnect = new DatabaseConnect();
     $conn = $databaseConnect->getInstance();
     $response = [];

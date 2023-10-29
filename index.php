@@ -1,30 +1,3 @@
-<?php
-    $serverName = "localhost";
-    $username = "root";
-    $password = "";
-    $databaseName = "bus_booking";
-    $conn = new mysqli($serverName, $username, $password, $databaseName);
-
-    if(!$conn){
-        die("Unable to connect to Database!");
-    }
-?>
-<?php
-  // // PHP Data Objects(PDO) Sample Code:
-  // try {
-  //     $conn = new PDO("sqlsrv:server = tcp:buscredentials.database.windows.net,1433; Database = Busdetails", "logesh", "{your_password_here}");
-  //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  // }
-  // catch (PDOException $e) {
-  //     print("Error connecting to SQL Server.");
-  //     die(print_r($e));
-  // }
-
-  // // SQL Server Extension Sample Code:
-  // $connectionInfo = array("UID" => "logesh", "pwd" => "Logesh123", "Database" => "Busdetails", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-  // $serverName = "tcp:buscredentials.database.windows.net,1433";
-  // $conn = sqlsrv_connect($serverName, $connectionInfo);
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +13,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg bg-body-tertiary d-none d-md-block">
           <div class="container-fluid d-flex justify-content-evenly">
-            <a class="nav-link" aria-current="page" href="/busBooking">Home</a>
+            <a class="nav-link" aria-current="page" href="/">Home</a>
             <a class="nav-link" href="our-routes.php">Our Routes</a>
             <a class="navbar-brand" href="#">
               <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
@@ -51,14 +24,14 @@
               $userLoggedIn = false;
               $companyLoggedIn = false;
               $userId = -1;
-              $userType = -1;
+              $userType = '-1';
               if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])){
                 $userId = $_SESSION['user_id'];
                 $userType = $_SESSION['user_type'];
-                if($userType == 0){
+                if($userType == '0'){
                   $userLoggedIn = true;
                 }
-                if($userType == 1){
+                if($userType == '1'){
                   $companyLoggedIn = true;
                 }
               }
@@ -99,7 +72,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo01">
-                <a class="nav-link mb-3" aria-current="page" href="/busBooking">Home</a>
+                <a class="nav-link mb-3" aria-current="page" href="/">Home</a>
                 <a class="nav-link mb-3" href="our-routes.php">Our Routes</a>
                 <a href="javascript:void(0)">
                   <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">

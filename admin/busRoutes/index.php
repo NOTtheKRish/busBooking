@@ -100,7 +100,7 @@
     <header class="pb-3 mb-4 border-bottom">
         <div class="d-flex align-items-center justify-content-between text-body-emphasis text-decoration-none">
             <div class="">
-                <a href="dashboard.php" class="text-body-emphasis text-decoration-none">
+                <a href="../dashboard.php" class="text-body-emphasis text-decoration-none">
                     <img src="../../assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
                 </a>
             </div>
@@ -148,7 +148,7 @@
                     <td>INR <?php echo $row['fare']; ?></td>
                     <td><?php echo $row['available_seats']; ?>/<?php echo $row['total_seats']; ?></td>
                     <td>
-                        <a class="btn btn-outline-light me-2" href="edit.php">Edit</a>
+                        <a class="btn btn-outline-light me-2" href="edit.php?bus_route_id=<?php echo $row['id']; ?>">Edit</a>
                         <a class="btn btn-outline-light" href="javascript:void(0)" onclick="deleteBusRoute(<?php echo $row['id']; ?>);">Delete</a>
                     </td>
                 </tr>

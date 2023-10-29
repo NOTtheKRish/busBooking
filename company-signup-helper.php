@@ -4,22 +4,24 @@
     $conn = $databaseConnect->getInstance();
     $response = [];
     $name = mysqli_real_escape_string($conn,$_POST['name']);
+    $comName =mysqli_real_escape_string($conn,$_POST['comName']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $phone = mysqli_real_escape_string($conn,$_POST['phone']);
     $password = mysqli_real_escape_string($conn,$_POST['pass']);
 
-    if($name != "" && $email != "" && $phone != "" && $password != ""){
+    if($name != "" && $comName != "" && $email != "" && $phone != "" && $password != ""){
         $hashPass = password_hash($password, PASSWORD_DEFAULT);
-    
-        $sql = "INSERT INTO users (name,email,phone,password) VALUES (?,?,?,?)";
+        $userType = '1';
+        $sql = "INSERT INTO users (name,user_type,email,phone,company_name,password) VALUES (?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $name,$email,$phone,$hashPass);
+        $stmt->bind_param("ssss", $name,$userType,$email,$phone,$comName,$hashPass);
         $stmt->execute();
 
         $response = [
             'status' => "success",
-            'message' => "User Registration Success!",
+            'message' => "Company Registration Success!",
         ];
+
     }else{
         $response = [
             'status' => "error",
@@ -28,5 +30,4 @@
     }
 
     echo json_encode($response);
-
 ?>
