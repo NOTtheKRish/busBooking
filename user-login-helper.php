@@ -3,18 +3,19 @@
     $databaseConnect = new DatabaseConnect();
     $conn = $databaseConnect->getInstance();
     $response = [];
-    $uname = mysqli_real_escape_string($conn,$_POST['username']);
-    $password = mysqli_real_escape_string($conn,$_POST['pass']);
+    $uname = $_POST['username'];
+    $password = $_POST['pass'];
   
         if ($uname != "" && $password != ""){
            $sql_query = "SELECT id,user_type,name,email,phone,password FROM users WHERE email='".$uname."'";
-           $result = mysqli_query($conn,$sql_query);
-           $result_num = mysqli_num_rows($result);
+           $result = $conn->query($sql_query);
+        //    $result = sqlsrv_query($conn,$sql_query);
+           $result_num = sqlsrv_num_rows($result);
            if($result_num != 0){
                 // account exists
-                while($row = mysqli_fetch_array($result)){
+                while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
                    $pw = $row['password'];
-                   if($row['user_type'] == 1){
+                   if($row['user_type'] == '1'){
                        // company logged in
                        $response = [
                             'status' => "error",

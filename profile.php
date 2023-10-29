@@ -147,8 +147,13 @@
                 <?php
                     $ticketBooking = new TicketBooking();
                     $fetchAll = $ticketBooking->fetchForUser($userId);
+<<<<<<< HEAD
                     if (mysqli_num_rows($fetchAll) > 0) {
                         while($row = mysqli_fetch_array($fetchAll)){
+=======
+                    if (sqlsrv_num_rows($fetchAll) > 0) {
+                        while($row = sqlsrv_fetch_array($fetchAll, SQLSRV_FETCH_ASSOC)){
+>>>>>>> d5d5f13cddf41dfe615be77690302b9aaf2de5f7
                             $busRoute = new BusRoute();
                             $bus = $busRoute->fetchById($row['bus_route_id']);
                 ?>

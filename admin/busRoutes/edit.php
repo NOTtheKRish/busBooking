@@ -136,8 +136,13 @@ error_reporting(E_ALL);
             $busRoute = new BusRoute();
             $bus = $busRoute->fetchById($busRouteId);
             // print_r($bus);
+<<<<<<< HEAD
             if (mysqli_num_rows($bus) > 0) {
                 while($row = mysqli_fetch_array($bus)){
+=======
+            if (sqlsrv_num_rows($bus) > 0) {
+                while($row = sqlsrv_fetch_array($bus, SQLSRV_FETCH_ASSOC)){
+>>>>>>> d5d5f13cddf41dfe615be77690302b9aaf2de5f7
                     $fromLocation = $row['from_location'];
                     $toLocation = $row['to_location'];
         ?>
