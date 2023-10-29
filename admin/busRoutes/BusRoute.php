@@ -14,7 +14,7 @@
             $sql = "SELECT * FROM bus_routes ORDER BY id DESC";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $result = $stmt->get_result(); // get the mysqli result
+            $result = $stmt->get_result(); // get the sqlsrv result
 
             return $result;
         }

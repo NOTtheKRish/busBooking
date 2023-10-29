@@ -3,8 +3,8 @@
     $databaseConnect = new DatabaseConnect();
     $conn = $databaseConnect->getInstance();
     $response = [];
-    $uname = mysqli_real_escape_string($conn,$_POST['username']);
-    $password = mysqli_real_escape_string($conn,$_POST['pass']);
+    $uname = $_POST['username'];
+    $password = $_POST['pass'];
   
         if ($uname != "" && $password != ""){
            $sql_query = "SELECT id,user_type,name,email,phone,password FROM users WHERE email='".$uname."'";
