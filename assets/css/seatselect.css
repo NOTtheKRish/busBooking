@@ -35,8 +35,18 @@ body,html,.container-fluid{
     margin-left: 60px !important;
     min-height: 520px !important;
     width: 300px !important;
-    background-color: grey;
+    background-color: whitesmoke;
     border-radius: 10px;
+}
+.passengerDetails{
+    margin-top: 100px !important;
+    margin-left: 60px !important;
+    min-height: 520px !important;
+    color: white;
+}
+#passengerDetails{
+    overflow-y: auto;
+    max-height: 320px!important;
 }
 #steering{
     height: 50px !important;

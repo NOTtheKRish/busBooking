@@ -1,9 +1,11 @@
 <?php
     $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
-    if(in_array($fileName,['profile'])){
+    if(in_array($fileName,['profile','seat-select-helper'])){
         require_once('./helpers/DatabaseConnect.php');
+        require_once('./admin/busRoutes/BusRoute.php');
     }else{
         require_once('../../helpers/DatabaseConnect.php');
+        require_once('../busRoutes/BusRoute.php');
     }
     
     class TicketBooking{
@@ -40,26 +42,51 @@
             return $randomString;
         }
 
-        public function createBooking($userId,$bookingDate,$busRouteId,$selectedSeats,$passengerNames,
-                        $passengerAges,$passengerEmail,$passengerPhone){
+        public function createBooking($userId,$bookingDate,$busRouteId,$selectedSeat,$passengerName,
+                        $passengerAge,$passengerEmail,$passengerPhone){
             // 8 params
             $totalTickets = 0;
             $databaseConnect = new DatabaseConnect();
             $conn = $databaseConnect->getInstance();
             $ticketId = self::generateRandomString(12);
-            $sql = "INSERT INTO ticket_bookings (user_id,ticket_id,booking_date,bus_route_id,seat_no,passenger_name,passenger_age,passenger_email,passenger_phone) VALUES(?,?,?,?,?,?,?,?,?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ississsss", $userId,$ticketId,$bookingDate,$busRouteId,$selectedSeats,$passengerNames,
-                            $passengerAges,$passengerEmail,$passengerPhone);
-            $stmt->execute();
+            $selectedSeats = $selectedSeat;
+            $passengerNames = explode(',', $passengerName);
+            $passengerAges = explode(',', $passengerAge);
+            $passengerPhones = explode(',', $passengerPhone);
+            $passengerEmails = explode(',', $passengerEmail);
+
+            $totalTickets = count($passengerNames);
+
+            for ($i = 0; $i < $totalTickets; $i++) {
+                $sql = "INSERT INTO ticket_bookings (user_id,ticket_id,booking_date,bus_route_id,seat_no,passenger_name,passenger_age,passenger_email,passenger_phone) VALUES(?,?,?,?,?,?,?,?,?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ississsss", $userId,$ticketId,$bookingDate,$busRouteId,$selectedSeats[$i],$passengerNames[$i],
+                                $passengerAges[$i],$passengerEmails[$i],$passengerPhones[$i]);
+                $stmt->execute();
+            }
+
+            // $busRoute = new BusRoute();
+            // $availableSeats = 0;
+            // $bus = $busRoute->fetchById($busRouteId);
+            // if (mysqli_num_rows($bus) > 0) {
+            //     while($row = mysqli_fetch_array($bus)){
+            //         $availableSeats = $row['available_seats'];
+            //     }
+            // }
+            // $availableSeats -= $totalTickets;
+
+            // return $availableSeats;
             
-            $sql1 = "UPDATE bus_routes SET available_tickets = available_tickets - ? WHERE id = ?";
-            $stmt1 = $conn->prepare($sql1);
-            $stmt1->bind_param("ii", $totalTickets,$busRouteId);
-            $stmt1->execute();
+            // $sql1 = "UPDATE bus_routes SET available_tickets = ? WHERE id = ?";
+            // $stmt1 = $conn->prepare($sql1);
+            // $stmt1->bind_param("ii", $availableSeats,$busRouteId);
+            // $stmt1->execute();
             
-            $response = ['success' => "Ticket Booking Successful!"];
-            echo json_encode($response);
+            $response = [
+                'status' => "success",
+                'message' => "Ticket Booking Successful!"
+            ];
+            return $response;
         }
         
         public function cancelBooking($ticketBookingId){
@@ -70,8 +97,11 @@
             $stmt->bind_param("si", "Cancelled",$ticketBookingId);
             $stmt->execute();
             
-            $response = ['success' => "Ticket Booking Cancelled!"];
-            echo json_encode($response);
+            $response = [
+                'status' => "success",
+                'message' => "Ticket Cancelled Successful!"
+            ];
+            return $response;
         }
     }
 ?>

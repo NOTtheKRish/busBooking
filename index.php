@@ -77,8 +77,33 @@
                 <a href="javascript:void(0)">
                   <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
                 </a>
-                <a class="nav-link my-3" href="user-login.php">Login</a>
-                <a class="nav-link mb-3" href="company-login.php">Company Login</a>
+                <?php
+              if($userLoggedIn){
+            ?>
+                <a class="nav-link" href="profile.php">Profile</a>
+            <?php
+              }else{
+            ?>
+            <a class="nav-link" href="user-login.php">Login</a>
+            <?php
+              }
+            ?>
+            <?php
+              if($companyLoggedIn){
+            ?>
+                <a class="nav-link" href="company-login.php">Dashboard</a>
+            <?php
+              }else{
+            ?>
+                <a class="nav-link" href="company-login.php">Company Login</a>
+            <?php
+              }
+              if($userLoggedIn || $companyLoggedIn){
+            ?>
+                <a class="nav-link" href="logout.php" id="logoutUser">Logout</a>
+            <?php
+              }
+            ?>
           </div>
         </div>
       </nav>

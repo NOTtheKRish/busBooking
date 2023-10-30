@@ -150,10 +150,16 @@ error_reporting(E_ALL);
                         <input type="text" class="form-control" id="busName" value="<?php echo $row['bus_name']; ?>">
                     </div>
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-3">
                     <div class="mb-3">
                         <label for="busType" class="form-label">Bus Type</label>
                         <input type="text" class="form-control" id="busType" value="<?php echo $row['bus_type']; ?>">
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="mb-3">
+                        <label for="journeyDate" class="form-label">Journey Date</label>
+                        <input type="date" class="form-control" id="journeyDate" value="<?php echo $row['journey_date']; ?>">
                     </div>
                 </div>
             </div>
@@ -281,6 +287,7 @@ error_reporting(E_ALL);
         var routeId = $('#busRouteId').val();
         var busName = $('#busName').val();
         var busType = $('#busType').val();
+        var journeyDate = $('#journeyDate').val();
         var fromLocation = $('#fromLocations option:selected').val();
         var boardingPoint = $('#boardingPoint').val();
         var boardingTime = $('#boardingTime').val();
@@ -296,6 +303,7 @@ error_reporting(E_ALL);
             routeId: routeId,
             busName: busName,
             busType: busType,
+            journeyDate: journeyDate,
             fromLocation: fromLocation,
             boardingPoint: boardingPoint,
             boardingTime: boardingTime,

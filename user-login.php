@@ -42,6 +42,8 @@
     </div>
     <?php include_once('scripts.php'); ?>
     <script type="text/javascript">
+        var prev = "<?php echo $_SERVER['HTTP_REFERER']; ?>";
+        console.log("prev :"+prev);
         $('body').on('click','#signIn',function(e){
             e.preventDefault();
             var email = $('#email').val();
@@ -74,7 +76,7 @@
                                     confirm: "Close",
                                 }
                             }).then(function(){
-                                window.location.href = "index.php";
+                                window.location.href = prev;
                             });
                         }
                     },600);

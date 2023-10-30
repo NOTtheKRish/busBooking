@@ -141,7 +141,7 @@
                 <td>To</td>
                 <td>Passenger</td>
                 <td>Fare</td>
-                <td>Actions</td>
+                <!-- <td>Actions</td> -->
             </thead>
             <tbody>
                 <?php
@@ -151,19 +151,22 @@
                         while($row = mysqli_fetch_array($fetchAll)){
                             $busRoute = new BusRoute();
                             $bus = $busRoute->fetchById($row['bus_route_id']);
+                            if (mysqli_num_rows($bus) > 0) {
+                              while($row1 = mysqli_fetch_array($bus)){
                 ?>
                 <tr class="align-items-end">
                     <td><?php echo $row['ticket_id']; ?></td>
                     <td><?php echo $row['booking_date']; ?></td>
                     <td><?php echo $row['seat_no']; ?></td>
-                    <td><?php echo $bus['from_location']; ?></td>
-                    <td><?php echo $bus['to_location']; ?></td>
+                    <td><?php echo $row1['from_location']; ?></td>
+                    <td><?php echo $row1['to_location']; ?></td>
                     <td><?php echo $row['passenger_name']."(".$row['passenger_age'].")"; ?></td>
-                    <td>INR <?php echo $row['fare']; ?></td>
-                    <td>
-                    </td>
+                    <td>INR <?php echo $row1['fare']; ?></td>
+                    <!-- <td></td> -->
                 </tr>
                 <?php
+                              }
+                            }
                         }
                     }else{
                 ?>

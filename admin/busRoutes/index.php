@@ -1,6 +1,7 @@
 <?php
     require('../session.php');
     require_once('BusRoute.php');
+    $userId = $_SESSION['user_id'];
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -124,6 +125,7 @@
         <table class="table table-dark table-striped table-hover">
             <thead>
                 <td>Route ID</td>
+                <td>Journey Date</td>
                 <td>Bus Name</td>
                 <td>Bus Type</td>
                 <td>From</td>
@@ -135,12 +137,13 @@
             <tbody>
                 <?php
                     $busRoute = new BusRoute();
-                    $fetchAll = $busRoute->fetchAll();
+                    $fetchAll = $busRoute->fetchByUser($userId);
                     if (mysqli_num_rows($fetchAll) > 0) {
                         while($row = mysqli_fetch_array($fetchAll)){
                 ?>
                 <tr class="align-items-end">
                     <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['journey_date']; ?></td>
                     <td><?php echo $row['bus_name']; ?></td>
                     <td><?php echo $row['bus_type']; ?></td>
                     <td><?php echo $row['from_location']; ?></td>

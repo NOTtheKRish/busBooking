@@ -14,15 +14,58 @@
   <div class="container-fluid">
     <div class="row">
     <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary d-none d-md-block">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary d-none d-md-block">
           <div class="container-fluid d-flex justify-content-evenly">
             <a class="nav-link" aria-current="page" href="/">Home</a>
             <a class="nav-link" href="our-routes.php">Our Routes</a>
             <a class="navbar-brand" href="#">
               <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
             </a>
+            <?php
+              session_name("BusUserSession");
+              session_start();
+              $userLoggedIn = false;
+              $companyLoggedIn = false;
+              $userId = -1;
+              $userType = '-1';
+              if(isset($_SESSION['user_id']) && isset($_SESSION['user_type'])){
+                $userId = $_SESSION['user_id'];
+                $userType = $_SESSION['user_type'];
+                if($userType == '0'){
+                  $userLoggedIn = true;
+                }
+                if($userType == '1'){
+                  $companyLoggedIn = true;
+                }
+              }
+            ?>
+            <?php
+              if($userLoggedIn){
+            ?>
+                <a class="nav-link" href="profile.php">Profile</a>
+            <?php
+              }else{
+            ?>
             <a class="nav-link" href="user-login.php">Login</a>
-            <a class="nav-link" href="company-login.php">Company Login</a>
+            <?php
+              }
+            ?>
+            <?php
+              if($companyLoggedIn){
+            ?>
+                <a class="nav-link" href="company-login.php">Dashboard</a>
+            <?php
+              }else{
+            ?>
+                <a class="nav-link" href="company-login.php">Company Login</a>
+            <?php
+              }
+              if($userLoggedIn || $companyLoggedIn){
+            ?>
+                <a class="nav-link" href="logout.php" id="logoutUser">Logout</a>
+            <?php
+              }
+            ?>
           </div>
         </nav>
       </div>
@@ -37,8 +80,33 @@
                 <a href="javascript:void(0)">
                   <img src="assets/images/bus-solid.svg" alt="Bootstrap" width="30" height="24">
                 </a>
-                <a class="nav-link my-3" href="user-login.php">Login</a>
-                <a class="nav-link mb-3" href="company-login.php">Company Login</a>
+                <?php
+              if($userLoggedIn){
+            ?>
+                <a class="nav-link" href="profile.php">Profile</a>
+            <?php
+              }else{
+            ?>
+            <a class="nav-link" href="user-login.php">Login</a>
+            <?php
+              }
+            ?>
+            <?php
+              if($companyLoggedIn){
+            ?>
+                <a class="nav-link" href="company-login.php">Dashboard</a>
+            <?php
+              }else{
+            ?>
+                <a class="nav-link" href="company-login.php">Company Login</a>
+            <?php
+              }
+              if($userLoggedIn || $companyLoggedIn){
+            ?>
+                <a class="nav-link" href="logout.php" id="logoutUser">Logout</a>
+            <?php
+              }
+            ?>
           </div>
         </div>
       </nav>
@@ -93,7 +161,7 @@
                   <div class="col-sm-2">
                     <h5 class="card-title">Seats Available</h5>
                     <p class="card-text"><strong><?php echo $row['available_seats'] ?></strong> Seats Available</p>
-                    <a href="select-seat.php?bus_route_id=<?php echo $row['id']; ?>&?from_location=<?php echo $searchHelper->fetchFromLocation(); ?>&to_location=<?php echo $searchHelper->fetchToLocation(); ?>?journey_date=<?php echo $_GET['journey_date']; ?>" class="btn btn-primary">View Seats</a>
+                    <a href="select-seat.php?bus_route_id=<?php echo $row['id']; ?>&from_location=<?php echo $searchHelper->fetchFromLocation(); ?>&to_location=<?php echo $searchHelper->fetchToLocation(); ?>&journey_date=<?php echo $_GET['journey_date']; ?>" class="btn btn-primary">View Seats</a>
                   </div>
                 </div>
               </div>
